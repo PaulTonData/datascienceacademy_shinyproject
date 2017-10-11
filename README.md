@@ -1,4 +1,4 @@
 # datascienceacademy_shinyproject
 
-Link to shinyapps:
+Link to shinyapp:
 https://paultondata.shinyapps.io/shinyOffice/
