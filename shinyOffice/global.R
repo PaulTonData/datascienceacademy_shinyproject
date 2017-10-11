@@ -116,3 +116,8 @@ ratings <- read.table("ratings.data", header=F, sep="", stringsAsFactors=F, colC
 ratings <- separate(ratings, ep, c("season", "episode"), "[.]")
 ratings <- ratings %>% group_by(season) %>% mutate(episode = seq_along(season))
 ratings$count <- as.numeric(gsub(",", "", ratings$count))
+
+ratings_avgs <-
+  ratings %>% 
+  group_by(season) %>% 
+  summarise(rating = mean(rating), count = mean(count))
