@@ -38,7 +38,15 @@ shinyServer(function(input, output, session){
   })
   output$socialgraph <- renderPlot({
     relationships <- get_graph(edges_season, nodes_season, input$season4)
-    plot(relationships)
+    E(relationships)$width <- log(E(relationships)$count)
+    plot(relationships, 
+         edge.color="orange",
+         vertex.color="white smoke", 
+         vertex.shape="circle",
+         vertex.label.cex=1.2,
+         vertex.label.font=2,
+         vertex.size=15,
+         vertex.label.color="black")
   })
   output$centrality <- renderPlot({
     cent <- get_centrality(edges_season, nodes_season, input$season2)
@@ -85,6 +93,14 @@ shinyServer(function(input, output, session){
   })
   output$ep_graph <- renderPlot({
     relationships <- get_graph(edges_ep, nodes_ep, input$season3, input$episode)
-    plot(relationships)
+    E(relationships)$width <- log2(E(relationships)$count)
+    plot(relationships, 
+         edge.color="orange",
+         vertex.color="white smoke", 
+         vertex.shape="circle",
+         vertex.label.cex=1.2,
+         vertex.label.font=2,
+         vertex.size=15,
+         vertex.label.color="black")
   })
 })

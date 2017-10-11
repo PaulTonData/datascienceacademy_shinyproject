@@ -25,11 +25,17 @@ shinyUI(dashboardPage(
       menuItem("Appendix", tabName = "appendix", icon = icon("sticky-note")))
   ),
   dashboardBody(
+    tags$head(
+      tags$style(
+        type="text/css", 
+          ".biglist {font-size: 24px;}"
+      )
+    ),    
     tabItems(
       tabItem(tabName = "overview",
               fluidRow(
                 h2("Introduction"),
-                tags$ul(
+                tags$ul(class="biglist",
                   tags$li("American comedy series on NBC"),
                   tags$li("9 seasons, ~200 episodes"),
                   tags$li("Dataset -- all spoken lines from the scripts")
@@ -38,10 +44,10 @@ shinyUI(dashboardPage(
       tabItem(tabName = "motivation",
               fluidRow(
                 h2("Why do we care?"),
-                tags$ul(
-                  tags$li("People love TV"),
-                  tags$li("Is The Office good?"),
-                  tags$li("What do people like about it?"),
+                tags$ul(class="biglist",
+                  tags$li("People watch a lot of TV"),
+                  tags$li("People love The Office"),
+                  tags$li("Why do people like it?"),
                   box(plotOutput("ratings")),
                   box(plotOutput("viewership"))
                 )
@@ -49,13 +55,15 @@ shinyUI(dashboardPage(
       tabItem(tabName = "lineshares",
               fluidRow(
                 h2("Lineshares"),
-                p("# lines spoken by character / # lines spoken by all characters"),
+                p(class="biglist",
+                    "# lines spoken by character / # lines spoken by all characters"),
                 box(plotOutput("lineshare_main"))
               )),
       tabItem(tabName = "cooccurrence",
               fluidRow(
                 h2("Co-occurrence"),
-                p("# times two characters appear in scenes together"),
+                p(class="biglist",
+                  "# times two characters appear in scenes together"),
                 selectizeInput("season",
                                "Select Season",
                                1:9),
@@ -64,7 +72,8 @@ shinyUI(dashboardPage(
       tabItem(tabName = "socialgraph",
               fluidRow(
                 h2("Social Graph"),
-                p("Network visualization of co-occurrence"),
+                p(class="biglist",
+                  "Network visualization of co-occurrence"),
                 selectizeInput("season4",
                                "Select Season",
                                1:9),
@@ -73,7 +82,8 @@ shinyUI(dashboardPage(
       tabItem(tabName = "centrality",
               fluidRow(
                 h2("Centrality"),
-                p("The influence or importance of a node in the social graph."),
+                p(class="biglist",
+                  "The influence or importance of a node in the social graph."),
                 selectizeInput("season2",
                                "Select Season",
                                1:9),
@@ -103,11 +113,12 @@ shinyUI(dashboardPage(
       tabItem(tabName = "discussion",
                 fluidRow(
                   h2("Discussion"),
-                  tags$ul(
+                  tags$ul(class="biglist",
                     tags$li("So what?"),
                     tags$li("Reboots, spinoffs, revivals"),
-                    tags$li("NLP - Tf-Idf, sentiment analysis"),
-                    tags$li("other TV shows")
+                    tags$li("other TV shows"),                    
+                    tags$li("NLP: Tf-Idf"),
+                    tags$li("NLP: sentiment analysis")
                   )                  
                 )
               ),
